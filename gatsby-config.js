@@ -15,7 +15,6 @@ module.exports = {
         allExtensions: true, // defaults to false
       },
     },
-    "gatsby-transformer-typescript-css-modules",
     "gatsby-plugin-sharp", 
     "gatsby-transformer-sharp", 
     // source docs plugin
