@@ -1,0 +1,27 @@
+.mainList li {
+  list-style: none;
+}
+
+.mainList p {
+  margin-left: 1em;
+}
+
+.mainList a {
+  /* color: black !important; */
+  font-weight: 600;
+}
+
+.mainList {
+  padding-top: .5em;
+  width: 85%;
+}
+
+.mainList div {
+  margin-bottom: 1em;
+}
+
+*:target {
+  text-decoration: underline;
+  color: brown;
+  padding-top: 4em;
+}

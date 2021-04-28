@@ -1,0 +1,35 @@
+.sidebarMain {
+  display: none;
+  padding: 1em;
+  color: darkslategray;
+}
+
+
+@media (min-width: 1000px){
+
+  .sidebarMain {
+    display: block;
+    position: fixed;
+    top:8em;
+    right: 1vw;
+    min-height: 80%;
+    max-height: 80%;
+  }
+
+  .sidebarMain a {
+    color: darkslategray;
+    display: block;
+  }
+
+  .iconHolder i {
+    font-size: 1.25em;
+    margin-bottom: .5em;
+  }
+
+  .iconHolder img {
+    width: 20px;
+    display: block;
+    margin-bottom: .75em;
+  }
+
+}

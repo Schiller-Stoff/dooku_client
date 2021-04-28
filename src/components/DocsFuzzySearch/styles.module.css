@@ -1,0 +1,15 @@
+
+.fuzzySearch h3 {
+  font-size: 1.25em;
+  color: darkblue;
+}
+
+.fuzzySearch a {
+  color: lightgrey;
+}
+
+.fuzzySearch button {
+  background: white;
+  color: lightgrey;
+  border-radius: 0;
+}
