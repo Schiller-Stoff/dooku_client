@@ -6,6 +6,7 @@
 
 module.exports = {
   /* Your site config here */
+  pathPrefix: `/dooku_client`,
   plugins: [
     {
       resolve: `gatsby-plugin-typescript`,
