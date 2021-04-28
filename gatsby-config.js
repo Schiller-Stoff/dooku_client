@@ -22,7 +22,7 @@ module.exports = {
       resolve: "gatsby-source-google-docs",
       options: {
           // https://drive.google.com/drive/folders/FOLDER_ID
-          folder: "1IYuPOPiGsrFAf-dfK4mZCwrB9v37WLv3",
+          folder: "1E7dkqEliPvpzSx9IsHSuiblH5VKZLr5X",
           createPages: true,
       },
     },
