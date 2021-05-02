@@ -40,6 +40,8 @@ const DocsTree: React.FC = () => {
           paddingLeft: 0,
           maxHeight: "75vh",
           overflowY: "scroll",
+          boxShadow:"1px 1px 5px 1px lightgrey",
+          padding:".5em"
         }}
       >
         {uniques.sort().map((unique, curInd) => {

@@ -31,12 +31,7 @@ const Layout: React.FC<Props> = ({ left, center, right }) => {
 
       <div className="row">
         <div className={`col-lg-3 ${styles.leftSide}`}>
-          <div className={`${styles.stickyLeft} sticky-top`}>
-          <div className="container">
-            <img src="https://zimlab.uni-graz.at/uploads/-/system/appearance/header_logo/1/header_logo2.png" style={{width:40, height:15}}></img>
-            {/* <i style={{marginLeft:"1em"}} className="fas fa-search"></i> */}
-            </div>
-            <hr></hr>{left}</div>
+          <div className={`${styles.stickyLeft} sticky-top`}>{left}</div>
         </div>
         <div className={`col-lg-8 ${styles.center}`}>
           <div className="container">{center}</div>

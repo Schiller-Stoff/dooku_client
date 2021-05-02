@@ -14,8 +14,9 @@ const Packages: React.FC = () => {
         <>
           <Nav />
           <h1>Published packages and components</h1>
+          <p>Here you find and <em>overview over all published (= ready to use) js packages</em> from ZIM Graz. </p>
           <h2>Newest updates</h2>
-          <ol className="list-group list-group-flush">
+          <ol className="list-group list-group-flush" style={{boxShadow:"1px 1px 5px 1px lightgrey", padding:".125em"}}>
             {data.allNpmPackage.edges.map((edge, i) => {
               return (
                 <li

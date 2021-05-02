@@ -3,38 +3,38 @@ import { graphql, useStaticQuery, Link } from "gatsby"
 
 const FrontendDocFeed: React.FC = () => {
   const data: FrontendQueryResult.Data = useStaticQuery(graphql`
-    {
-      allGoogleDocs(
-        sort: { order: DESC, fields: modifiedTime }
-        filter: { breadcrumb: { elemMatch: { slug: { eq: "/frontend" } } } }
-      ) {
-        edges {
-          node {
+  {
+    allGoogleDocs(sort: {order: DESC, fields: modifiedTime}) {
+      edges {
+        node {
+          name
+          modifiedTime(fromNow: true)
+          createdTime
+          breadcrumb {
             name
-            modifiedTime(fromNow: true)
-            createdTime
-            breadcrumb {
-              name
-              slug
-            }
-            childMarkdownRemark {
-              wordCount {
-                words
-              }
-            }
-            parents
+            slug
           }
+          childMarkdownRemark {
+            wordCount {
+              words
+            }
+          }
+          parents
         }
       }
     }
+  }
   `)
 
   return (
     <div
       style={{
-        maxHeight: "75vh",
-        overflowY: "scroll",
+        maxHeight: "70vh",
+        // maxWidth:"800px",
+        overflowY: "auto",
         background: "whitesmoke",
+        boxShadow:"1px 1px 5px 1px lightgrey",
+        // padding:".25em"
       }}
     >
       {data.allGoogleDocs.edges.map((edge, index) => (
@@ -70,7 +70,7 @@ const FrontendDocFeed: React.FC = () => {
               </h6>
 
               <p style={{ fontSize: "12px", margin: 0 }}>
-                Updated {edge.node.modifiedTime}
+                Updated {edge.node.modifiedTime} (from last build)
               </p>
               {/* <div dangerouslySetInnerHTML={{__html: edge.node.childMarkdownRemark.tableOfContents}}></div> */}
 

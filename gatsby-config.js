@@ -6,6 +6,11 @@
 
 module.exports = {
   /* Your site config here */
+  siteMetadata: {
+    title:"Dooku Client",
+    description: "coming soon",
+    author:"Sebastian Stoff"
+  },
   pathPrefix: `/dooku_client`,
   plugins: [
     {

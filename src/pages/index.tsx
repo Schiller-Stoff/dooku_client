@@ -37,7 +37,8 @@ const Home = () => {
       center={
         <>
           <Nav></Nav>
-          <h1>Frontend Dooku</h1>
+          <h1>Frontend Dooku <img style={{maxWidth:"8vw", display:"inline", filter:"grayscale(100%) contrast(175%)"}} src="https://cdn.custom-cursor.com/packs/2131/pack2756.png"></img></h1>
+          
           <p>Welcome to the frontend portal for Digital Humanities research at ZIM Graz!</p>
           <DocsFuzzySearch></DocsFuzzySearch>
           <h2>Ongoing documentation</h2>

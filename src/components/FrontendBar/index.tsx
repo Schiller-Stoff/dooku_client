@@ -7,7 +7,7 @@ const FrontendBar: React.FC = () => {
   return <ul className={styles.mainList}>
     <li>
       <div>
-        <Link to="/frontend/doc/gamsjs/gamsjs-api">GamsJS API</Link>
+        <Link to="/doc/gamsjs/gamsjs-api">GamsJS API</Link>
         <p>Documentation for gamsJs</p>
       </div>
     </li>
@@ -25,7 +25,7 @@ const FrontendBar: React.FC = () => {
     </li> */}
     <li>
       <div>
-        <Link to="/frontend/doc/gams-projekt-template">GAMS Project Template</Link>
+        <Link to="/doc/gams-projekt-template">GAMS Project Template</Link>
         <p>GAMS project setup template files needed to initialize a project on gamsdev. Display of different versions and currently recommended setup</p>
       </div>
     </li>

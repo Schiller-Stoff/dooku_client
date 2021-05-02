@@ -10,6 +10,41 @@
 
 .fuzzySearch button {
   background: white;
-  color: lightgrey;
+  /* color: lightgrey; */
   border-radius: 0;
+  border: none;
+}
+
+.fuzzySearch input {
+  /* border-bottom: 5px solid black; */
+  /* padding: 1.5em; */
+  color: lightgrey;
+  /* max-width: 550px; */
+  /* border-color: grey; */
+  border: none;
+}
+
+.fuzzySearch input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: lightgrey;
+  opacity: 1; /* Firefox */
+}
+
+.fuzzySearch input:focus {
+    outline: none !important;
+    border:none;
+    box-shadow: none;
+}
+
+.fuzzySearch form {
+  /* background: red; */
+  /* border: 1px solid grey; */
+  border:none !important;
+  /* max-width: 550px; */
+  padding: .5em;
+  box-shadow: 1px 1px 5px 1px lightgrey;
+  margin-bottom: .5em;
+}
+
+.fuzzySearch div {
+  margin-bottom: 0 !important;
 }

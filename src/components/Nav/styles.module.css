@@ -1,23 +1,19 @@
 
-.nav:hover {
-  background: darkblue;
-  
-}
-
-.nav:hover a {
-  color: white;
-  
-}
-
 .nav {
-  /* padding-left: 0 !important; */
-}
-
-.nav a {
-  font-size: 1em;
+  margin-bottom: 2em;
+  border: 1px solid lightgrey;
 }
 
 .nav a:hover {
-  color: white !important;
+  color: blue !important;
+}
+
+.nav a {
+  margin-right: .5em;
+  word-spacing: -3px;
+}
+
+.nav small {
+  margin-left: auto;
   text-decoration: underline;
 }

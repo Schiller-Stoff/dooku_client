@@ -2,8 +2,9 @@
 .leftSide {
   /* border-right: 2px solid black; */
   
-  background: whitesmoke;
+  background: white;
   font-size: .8em;
+  /* border-right: 3px solid whitesmoke; */
 }
 
 .center {
@@ -12,39 +13,46 @@
 }
 
 .rightSide {
-  background: whitesmoke;
+  /* background: whitesmoke; */
 }
 
 .leftSide a {
   color: lightgrey;
   font-size: 1em;
-  transition: all .125s ease-in-out;
 }
 
-
+.stickyLeft {
+  transition: all .25s ease-in-out;
+}
 
 @media (min-width: 800px){
 
   .stickyLeft {
-    overflow-y:scroll;
+    /* overflow-y:scroll; */
     min-height: 100vh;
     max-height: 100vh;
     padding-top: 1em;
     
   }
 
+  .stickyLeft:hover {
+    overflow-y: scroll;
+    background: darkblue;
+  }
+
   .stickyLeft li, .stickyLeft a, .stickyLeft span, .stickyLeft ins {
-    font-size: .95vw !important;
+    font-size: 1em !important;
     line-height: normal;
     color: lightgrey;
     transition: all .25s ease-in-out;
     text-decoration: none;
     list-style: circle;
+    line-height: 1.5em;
   }
 
   .leftSide:hover a, .leftSide:hover ins, .leftSide:hover li, .leftSide:hover span {
-    color:black !important;
-    line-height: 1.5em;
+    color:white !important;
+    
   }
 
   .leftSide {

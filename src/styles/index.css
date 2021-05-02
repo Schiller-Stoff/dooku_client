@@ -80,3 +80,28 @@ h2 {
 pre code {
   color: darkviolet !important;
 } */
+
+
+.zim-fuzzy-score-highest .zim-fuzzy--result-crumb {
+  border-bottom: 3px solid green;
+}
+
+.zim-fuzzy-score-higher .zim-fuzzy--result-crumb {
+  border-bottom: 3px solid lightgreen;
+}
+
+.zim-fuzzy-score-high .zim-fuzzy--result-crumb {
+  border-bottom: 3px solid grey;
+}
+
+.zim-fuzzy-score-medium .zim-fuzzy--result-crumb {
+  border-bottom: 3px solid lightgrey;
+}
+
+.zim-fuzzy-score-low .zim-fuzzy--result-crumb {
+  border-bottom: 3px solid tomato;
+}
+
+.zim-fuzzy-score-lowest .zim-fuzzy--result-crumb {
+  border-bottom: 3px solid red;
+}

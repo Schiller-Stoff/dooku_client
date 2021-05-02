@@ -6,62 +6,125 @@ import * as styles from "./styles.module.css";
 
 const DocsFuzzySearch: React.FC = () => {
 
-  const data: Data = useStaticQuery(graphql`
-    query {
-      allGoogleDocs {
-        edges {
-          node {
-            path
-            name
-            childMarkdownRemark {
-              excerpt(pruneLength: 500)
-              headings {
-                value
-              }
+  const data: GraphQlResponse.Data = useStaticQuery(graphql`
+  {
+    allGoogleDocs {
+      edges {
+        node {
+          path
+          name
+          childMarkdownRemark {
+            excerpt(pruneLength: 500)
+            headings {
+              value
             }
           }
         }
       }
     }
+    allNpmPackage(
+      filter: {keywords: {in: "Centre for Information Modelling"}}
+      sort: {fields: modified, order: DESC}
+    ) {
+      edges {
+        node {
+          description
+          title
+          readme {
+            childMarkdownRemark {
+              excerpt
+              headings {
+                value
+              }
+            }
+          }
+          slug
+        }
+      }
+    }
+  }
+  
   `)
+
+
+  React.useEffect(() => {
+    setTimeout(() => {
+      let input = document.querySelector("input");
+      if(!input)return; 
+      input.focus();
+      input.scrollTo();
+    }, 500)
+  }, []);
+
+
+  /**
+   * Uses the data from graphql and transforms it to required fuzzy search 
+   * data structure.
+   * @returns 
+   */
+  const aggGraphqlToFuzzy = () => {
+    let fuzzyData: ZIMSearchAble[] = [];
+
+    // aggregate google docs to fuzzy
+    data.allGoogleDocs.edges.forEach(edge => {
+
+      let tags: string[] = []
+      // assign tags first
+
+      if(edge.node.path.includes("reference")){
+        tags.push("Reference Implementation");
+      } else if(edge.node.path.includes("guidelines")){
+        tags.push("Guideline");
+      } else {
+        tags.push("Doc");
+      }
+
+
+      fuzzyData.push({
+        label: edge.node.name,
+        value: edge.node.path,
+        txt: edge.node.childMarkdownRemark.excerpt,
+        // additionally search through all headings
+        headings: edge.node.childMarkdownRemark.headings.map(heading => heading.value),
+        // tags relative 
+        tags: tags
+      });
+    })
+
+    // npm packages to fuzzy data struct
+    data.allNpmPackage.edges.forEach(edge => {
+      fuzzyData.push({
+        label: edge.node.title,
+        value: "/npm" + edge.node.slug,
+        txt: edge.node.readme.childMarkdownRemark.excerpt,
+        // additionally search through all headings
+        headings: edge.node.readme.childMarkdownRemark.headings.map(heading => heading.value),
+        tags:["NPM Package"]
+      });
+    })
+
+    console.log(fuzzyData);
+
+    return fuzzyData;
+  }
+
 
   return <div className={styles.fuzzySearch}><ZIMFuzzySearch.Comp
   // optionally try with test data
   // as long as no data is defined -> will display loader 
   // data={testData.coremaData}
-  data={data.allGoogleDocs.edges.map(edge => {
-    return {
-      label: edge.node.name,
-      value: edge.node.path,
-      txt: edge.node.childMarkdownRemark.excerpt,
-      // additionally search through all headings
-      headings: edge.node.childMarkdownRemark.headings.map(heading => `${heading.value}`).join(" ")
-    }
-  })}  
-
+  data={aggGraphqlToFuzzy()}  
   showResultGrid={false}
 
-  // data={[
-  //   {
-  //     label: "Receipe 01",
-  //     value: "/link/to/category",
-  //     //txt and tags are optional properties
-  //     txt:"Nym weichsel vnd thu sy In ein haff",
-  //     tags: ["suess", "bitter"],
-  //   },
-  //   {
-  //     label:"Receipe02",
-  //     value:"link/to/category",
-  //     txt:"Tua rein wos longt und mer",
-  //     tags:["sauer", "bitter"]
-  //   },
-  //   {
-  //     label:"Receipe03",
-  //     value:"link/to/somewhere",
-  //     txt:"An fisch tua sulzen rein in spegg, ayn ay dazua tue no drauf amou wist honig dran mach. mit schmalczen reib ein.",
-  //     tags: ["sauer", "bitter"]
-  //   }
-  // ]}
+  tagConceptMap={{
+    "NPM Package": {url: "/packages"},
+    "Doc": {url:"/overview"},
+    "Guideline": {url:"/"},
+    "Reference Implementation": {url:"/refimpls"}
+  }}
+
+ placeHolder="Search for a documentation source..." 
+
 
   // tagConceptMap leads user to a link when clicked on tag badge 
   // not all tags have to be stated.
@@ -92,6 +155,30 @@ const DocsFuzzySearch: React.FC = () => {
     }
   } 
 
+  // what should happen when a tag is clicked
+  onTagSelect={
+    (tag) => navigate(tag.url) 
+  }
+
+  suggestions={
+    {
+      ...data.allGoogleDocs.edges.reduce((agg, edge) => {
+      agg[edge.node.name] = {
+        label:edge.node.path,
+        value:edge.node.name
+      }
+      return agg
+      }, {}),
+      ...data.allNpmPackage.edges.reduce((agg, edge) => {
+        agg[edge.node.title] = {
+          label:edge.node.slug,
+          value:edge.node.title
+        }
+        return agg
+        }, {})
+    }
+
+}
 
 
   // display search alert via using the onSearch prop
@@ -104,33 +191,75 @@ const DocsFuzzySearch: React.FC = () => {
 export default DocsFuzzySearch;
 
 
+declare module GraphQlResponse {
 
-  interface Heading {
+  export interface Heading {
       value: string;
   }
 
-  interface ChildMarkdownRemark {
+  export interface ChildMarkdownRemark {
       excerpt: string;
       headings: Heading[];
   }
 
-  interface Node {
+  export interface Node {
       path: string;
       name: string;
       childMarkdownRemark: ChildMarkdownRemark;
   }
 
-  interface Edge {
+  export interface Edge {
       node: Node;
   }
 
-  interface AllGoogleDocs {
+  export interface AllGoogleDocs {
       edges: Edge[];
   }
 
-  interface Data {
-      allGoogleDocs: AllGoogleDocs;
+  export interface Heading2 {
+      value: string;
   }
+
+  export interface ChildMarkdownRemark2 {
+      excerpt: string;
+      headings: Heading2[];
+  }
+
+  export interface Readme {
+      childMarkdownRemark: ChildMarkdownRemark2;
+  }
+
+  export interface Node2 {
+      description: string;
+      title: string;
+      readme: Readme;
+      slug: string;
+  }
+
+  export interface Edge2 {
+      node: Node2;
+  }
+
+  export interface AllNpmPackage {
+      edges: Edge2[];
+  }
+
+  export interface Data {
+      allGoogleDocs: AllGoogleDocs;
+      allNpmPackage: AllNpmPackage;
+  }
+
+  export interface Extensions {
+  }
+
+  export interface RootObject {
+      data: Data;
+      extensions: Extensions;
+  }
+
+}
+
+
 
 
 

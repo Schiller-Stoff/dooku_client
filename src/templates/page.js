@@ -33,7 +33,7 @@ const PageTemplate = ({
                 )}
               </ol>
             </nav>
-            <span><a href={`https://docs.google.com/document/d/${id}/edit`} target="_blank">Zum Google Doc</a></span>
+            <span><a href={`https://docs.google.com/document/d/${id}/edit`} target="_blank">Linked Google Doc</a></span>
             <br></br>
             <br></br>
             <div id="gatsbyMarkdownPage" dangerouslySetInnerHTML={{__html: html}}></div>
