@@ -50,7 +50,7 @@ const Layout: React.FC<Props> = ({ left, center, right }) => {
               <Link color="inherit" to="/">
                 Home
               </Link>
-              {window.location.pathname.split("/").filter(val => val.length !== 0).map((val, i) => {
+              {globalThis.location.pathname.split("/").filter(val => val.length !== 0).map((val, i) => {
                 return <Typography color="textPrimary">{val}</Typography>
               })}
             </Breadcrumbs>
