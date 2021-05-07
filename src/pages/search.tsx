@@ -14,7 +14,7 @@ const Search = () => {
           <hr></hr>
           <h2>fuzzy find: </h2>
           <Router>
-            <DocsFuzzySearch path="/search/:id"></DocsFuzzySearch>  
+            <DocsFuzzySearch path="/dooku_client//search/:id"></DocsFuzzySearch>  
             <DocsFuzzySearch default></DocsFuzzySearch>  
           </Router>
           {/* <h2>Ongoing documentation</h2>
