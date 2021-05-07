@@ -1,11 +1,30 @@
 
-.fuzzySearch h3 {
-  font-size: 1.25em;
-  color: darkblue;
+.fuzzySearch form {
+  font-size: 1.5em;
 }
 
-.fuzzySearch a {
-  color: lightgrey;
+.fuzzySearch button span {
+  font-size: 1.35em;
+  color: grey;
+}
+
+.fuzzySearch form input {
+  font-size: .75em;
+}
+
+.fuzzySearch h3 {
+  font-size: 1.5em;
+  color: darkblue;
+  margin:.25em 0 0 0;
+  text-decoration: none;
+  border-radius: none;
+}
+
+.fuzzySearch h6 {
+  font-size: 1.125em;
+  color: darkblue;
+  border-radius: none;
+  margin: 0 0 2em 0;
 }
 
 .fuzzySearch button {
@@ -17,8 +36,7 @@
 
 .fuzzySearch input {
   /* border-bottom: 5px solid black; */
-  /* padding: 1.5em; */
-  color: lightgrey;
+  color: black;
   /* max-width: 550px; */
   /* border-color: grey; */
   border: none;
@@ -38,13 +56,25 @@
 .fuzzySearch form {
   /* background: red; */
   /* border: 1px solid grey; */
-  border:none !important;
+  border:2px solid darkblue !important;
   /* max-width: 550px; */
   padding: .5em;
-  box-shadow: 1px 1px 5px 1px lightgrey;
+  box-shadow: 1px 1px 3px 1px grey;
   margin-bottom: .5em;
 }
 
-.fuzzySearch div {
-  margin-bottom: 0 !important;
+.fuzzySearch p {
+  margin: 0;
+}
+
+@media (min-width: 1200px) {
+  .fuzzySearch select {
+    position: fixed;
+    right: 2em;
+    box-shadow: 1px 1px 3px 1px grey;
+    border: 2px solid darkblue;
+    padding: .5em;
+    border-radius: 0;
+    visibility: visible !important;
+  }
 }

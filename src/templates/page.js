@@ -1,7 +1,6 @@
 import {graphql} from "gatsby"
 import React from "react"
 import Layout from "../components/Layout";
-import Nav from "../components/Nav";
 
 const PageTemplate = ({
   data: {
@@ -22,10 +21,10 @@ const PageTemplate = ({
         }
         center={
           <>
-            <Nav></Nav>
             
 
             <h1>{name}</h1>
+            <hr></hr>
             <nav>
               <ol className="breadcrumb bg-white" style={{padding:0, letterSpacing:"-1px"}}>
                 <li className="breadcrumb-item"><i className="far fa-folder"></i> ZIM Allgemein</li>

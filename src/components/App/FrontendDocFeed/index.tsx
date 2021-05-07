@@ -1,5 +1,6 @@
 import React from "react"
 import { graphql, useStaticQuery, Link } from "gatsby"
+import { List, ListItem, Grid, Paper, Container, Typography } from "@material-ui/core"
 
 const FrontendDocFeed: React.FC = () => {
   const data: FrontendQueryResult.Data = useStaticQuery(graphql`
@@ -27,52 +28,39 @@ const FrontendDocFeed: React.FC = () => {
   `)
 
   return (
-    <div
-      style={{
-        maxHeight: "70vh",
-        // maxWidth:"800px",
-        overflowY: "auto",
-        background: "whitesmoke",
-        boxShadow:"1px 1px 5px 1px lightgrey",
-        // padding:".25em"
-      }}
-    >
+    <Paper 
+      style={{border:"2px solid darkblue"}} 
+      square 
+      elevation={5}>
+      <List
+        style={{
+          maxHeight: "70vh",
+          overflowY: "auto",
+        }}
+      >
       {data.allGoogleDocs.edges.map((edge, index) => (
         <>
-          <div
-            className="card text-dark mb-3"
-            style={{
-              margin: 0,
-              borderRadius: 0,
-              border: "none",
-              padding: ".5em",
-            }}
-          >
-            {/* <div className="card-header">Frontend</div> */}
-            <div
-              className="card-body"
-              style={{ padding: 0, paddingLeft: ".5em" }}
-            >
+          <ListItem>
+            <Container>
               <small style={{ color: "lightgrey" }}>
                 {edge.node.breadcrumb[edge.node.breadcrumb.length - 1].slug}
                 .gdoc
               </small>
-              <h6 className="card-title" style={{ margin: 0 }}>
+              <Typography style={{ margin: 0 }}>
                 {index + 1}. <i className="far fa-file-alt"></i>{" "}
                 <Link
-                  style={{ color: "black", textDecoration: "underline" }}
+                  style={{ color: "darkblue", textDecoration: "underline" }}
                   to={
                     edge.node.breadcrumb[edge.node.breadcrumb.length - 1].slug
                   }
                 >
                   {edge.node.name}.gdoc
                 </Link>
-              </h6>
+              </Typography>
 
               <p style={{ fontSize: "12px", margin: 0 }}>
                 Updated {edge.node.modifiedTime} (from last build)
               </p>
-              {/* <div dangerouslySetInnerHTML={{__html: edge.node.childMarkdownRemark.tableOfContents}}></div> */}
 
               <p style={{ fontSize: "12px", margin: 0 }}>
                 ( Word count: {edge.node.childMarkdownRemark.wordCount.words} )
@@ -87,11 +75,12 @@ const FrontendDocFeed: React.FC = () => {
                   </a>
                 </small>
               </p>
-            </div>
-          </div>
+            </Container>
+          </ListItem>
         </>
       ))}
-    </div>
+    </List>
+    </Paper>
   )
 }
 

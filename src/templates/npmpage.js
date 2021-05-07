@@ -1,7 +1,6 @@
 import {graphql} from "gatsby"
 import React from "react"
 import Layout from "../components/Layout";
-import Nav from "../components/Nav";
 import { defineCustomElements as deckDeckGoHighlightElement } from '@deckdeckgo/highlight-code/dist/loader';
 deckDeckGoHighlightElement();
 
@@ -31,8 +30,8 @@ const NpmPageTemplate = ({
         }
         center={
           <>
-            <Nav></Nav>
             <h1>{name}</h1>
+            <hr></hr>
             <h2>Latest version: {version}</h2>
             {keywords.sort().map(keyword => <span style={{marginLeft:".25em"}} className="badge text-dark badge-light">{keyword}</span>)}
             <br></br>

@@ -4,8 +4,17 @@ import { ZIMFuzzySearch, ZIMSearchAble } from "zim-fuzzysearch";
 //@ts-ignore
 import * as styles from "./styles.module.css";
 
-const DocsFuzzySearch: React.FC = () => {
+interface Props {
+  path?: string,
+  default?: boolean,
+  id?: any
+}
 
+const DocsFuzzySearch: React.FC<Props> = (props) => {
+
+  <p>{props.id}</p>
+  console.log(props)
+  
   const data: GraphQlResponse.Data = useStaticQuery(graphql`
   {
     allGoogleDocs {
@@ -114,16 +123,9 @@ const DocsFuzzySearch: React.FC = () => {
   // as long as no data is defined -> will display loader 
   // data={testData.coremaData}
   data={aggGraphqlToFuzzy()}  
-  showResultGrid={false}
-
-  tagConceptMap={{
-    "NPM Package": {url: "/packages"},
-    "Doc": {url:"/overview"},
-    "Guideline": {url:"/"},
-    "Reference Implementation": {url:"/refimpls"}
-  }}
 
  placeHolder="Search for a documentation source..." 
+ searchInput={props.id}
 
 
   // tagConceptMap leads user to a link when clicked on tag badge 
@@ -138,13 +140,22 @@ const DocsFuzzySearch: React.FC = () => {
     txt: {label: "excerpt"},
     headings: {label:"headings"}
   }}
+
+  tagConceptMap={{
+    "Reference Implementation": {
+      url:"/"
+    },
+    "Doc": {url:"/"},
+    "NPM Package": {url: "/"},
+    "Guideline": {url: "/"}
+  }}
   
   // specify labeling of result count
   resultCountLabel="Estimated results: "
 
   // starts fuse search on input change (with short delay) when set to false
   // set to true will demand click on search button (fuzzy search is decoupled from highlight)
-  searchOnClick={false}
+  searchOnClick={true}
 
   // 
   onSelect={
@@ -159,6 +170,13 @@ const DocsFuzzySearch: React.FC = () => {
   onTagSelect={
     (tag) => navigate(tag.url) 
   }
+
+  onSearch={ (val) => {
+    // return if already in history
+    if(window.location.href.split("/").includes(val))return;
+    
+    history.pushState(undefined, "last_search", val)
+  }}
 
   suggestions={
     {

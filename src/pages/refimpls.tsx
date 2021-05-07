@@ -2,8 +2,8 @@
 import React from "react";
 import Layout from "../components/Layout";
 import FrontendBar from "../components/FrontendBar";
-import Nav from "../components/Nav";
 import { graphql, useStaticQuery, Link } from "gatsby"
+import { List, ListItem, Paper } from "@material-ui/core";
 
 
 const RefImpls: React.FC = () => {
@@ -40,27 +40,31 @@ const RefImpls: React.FC = () => {
     <Layout
       center={
         <>
-          <Nav/>
           <h1>Reference Implementations</h1>
           <p>A reference implementation means an <b>existing solution already deployed to production.</b></p>
           <p>This page provides an <b>overview</b> over these reference implementations and adds further information helping to decide if this solution might be the path I should follow along in future projects.</p>
+          <hr></hr>
           <h2>Sorted by last update</h2>
-          <ol className="list-group list-group-flush" style={{boxShadow:"1px 1px 5px 1px lightgrey", padding:".125em"}}>
-            {data.allGoogleDocs.edges.map((edge, i) => {
-              return (
-                <li
-                  className="list-group-item"
-                  style={{ borderBottom: "10px solid whitesmoke" }}
-                >
-                  {i + 1}. <i className="far fa-folder-open"></i> <Link style={{textDecoration:"underline", color:"darkblue"}} to={`${edge.node.path}`}>{edge.node.name}</Link>
-                  <small> - Updated {edge.node.modifiedTime} | Document created: {edge.node.createdTime}</small>
-                  <small style={{display:"block"}}>{edge.node.childMarkdownRemark.excerpt}</small>
-                  <img src={edge.node.images[0] ? edge.node.images[0].childImageSharp.fixed.src : undefined}></img>
-                  <br></br>
-                </li>
-              )
-            })}
-          </ol>
+          <Paper square elevation={5} style={{border:"2px solid darkblue"}}>
+            <List>
+              {data.allGoogleDocs.edges.map((edge, i) => {
+                return (
+                  <ListItem
+                    className="list-group-item"
+                    style={{ borderBottom: "2px solid darkblue", display:"block", paddingTop:"1em" }}
+                  >
+                    {i + 1}. <i className="far fa-folder-open"></i> <Link style={{textDecoration:"underline", color:"darkblue"}} to={`${edge.node.path}`}>{edge.node.name}</Link>
+                    <small> - Updated {edge.node.modifiedTime} | Document created: {edge.node.createdTime}</small>
+                    <small style={{display:"block"}}>{edge.node.childMarkdownRemark.excerpt}</small>
+                    <br></br>
+                    <img src={edge.node.images[0] ? edge.node.images[0].childImageSharp.fixed.src : undefined}></img>
+                    <br></br>
+                    <br></br>
+                  </ListItem>
+                )
+              })}
+            </List>
+          </Paper>
         </>}
       left={<FrontendBar/>}
     ></Layout>

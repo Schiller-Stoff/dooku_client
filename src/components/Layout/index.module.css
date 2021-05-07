@@ -2,9 +2,9 @@
 .leftSide {
   /* border-right: 2px solid black; */
   
-  background: white;
+  /* background: whitesmoke; */
   font-size: .8em;
-  /* border-right: 3px solid whitesmoke; */
+  /* border-right: 3px solid grey; */
 }
 
 .center {
@@ -32,26 +32,28 @@
     min-height: 100vh;
     max-height: 100vh;
     padding-top: 1em;
+    position: fixed;
+    max-width: 260px;
     
   }
 
-  .stickyLeft:hover {
+  /* .stickyLeft:hover {
     overflow-y: scroll;
     background: darkblue;
-  }
+  } */
 
   .stickyLeft li, .stickyLeft a, .stickyLeft span, .stickyLeft ins {
     font-size: 1em !important;
     line-height: normal;
     color: lightgrey;
-    transition: all .25s ease-in-out;
+    transition: all .125s ease-in-out;
     text-decoration: none;
     list-style: circle;
-    line-height: 1.5em;
+    line-height: 1.25em;
   }
 
   .leftSide:hover a, .leftSide:hover ins, .leftSide:hover li, .leftSide:hover span {
-    color:white !important;
+    color:black !important;
     
   }
 

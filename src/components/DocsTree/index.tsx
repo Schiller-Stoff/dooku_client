@@ -1,5 +1,6 @@
 import React from "react"
 import { Link, graphql, useStaticQuery } from "gatsby"
+import { Paper } from "@material-ui/core"
 
 const DocsTree: React.FC = () => {
   const data: Data = useStaticQuery(graphql`
@@ -34,14 +35,15 @@ const DocsTree: React.FC = () => {
         Embedment of the <em>Frontend folder</em> in context of the complete
         ZIM-Gdrive documentation.
       </p>
+      <Paper square elevation={5}>
       <ul
         style={{
           listStyle: "none",
           paddingLeft: 0,
           maxHeight: "75vh",
           overflowY: "scroll",
-          boxShadow:"1px 1px 5px 1px lightgrey",
-          padding:".5em"
+          padding:"1em",
+          border:"2px solid darkblue"
         }}
       >
         {uniques.sort().map((unique, curInd) => {
@@ -71,6 +73,7 @@ const DocsTree: React.FC = () => {
           )
         })}
       </ul>
+      </Paper>
     </>
   )
 }

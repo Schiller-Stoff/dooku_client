@@ -1,7 +1,8 @@
 
 .nav {
   margin-bottom: 2em;
-  border: 1px solid lightgrey;
+  /* border: 1px solid lightgrey; */
+  background: darkblue !important;
 }
 
 .nav a:hover {
@@ -9,11 +10,17 @@
 }
 
 .nav a {
+  color: white;
   margin-right: .5em;
   word-spacing: -3px;
 }
 
-.nav small {
+.nav input {
+  color: white;
+}
+
+.nav span {
   margin-left: auto;
-  text-decoration: underline;
+  /* text-decoration: underline; */
+  color: white;
 }

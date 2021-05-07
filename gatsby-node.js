@@ -1,6 +1,6 @@
 const path = require('path')
 
-module.exports.createPages = async ({ graphql, actions }) => {
+module.exports.createPages = async ({ graphql, actions}) => {
     const { createPage } = actions
     const blogTemplate = path.resolve('./src/templates/npmpage.js')
     const res = await graphql(`
@@ -38,4 +38,19 @@ module.exports.createPages = async ({ graphql, actions }) => {
             }
         })
     })
+
+}
+
+
+exports.onCreatePage = async ({ page, actions }) => {
+  const { createPage } = actions
+
+  // page.matchPath is a special key that's used for matching pages
+  // only on the client.
+  if (page.path.match(/^\/search/)) {
+    page.matchPath = "/search/*"
+
+    // Update the page.
+    createPage(page)
+  }
 }

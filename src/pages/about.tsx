@@ -1,6 +1,5 @@
 import React from "react";
 import Layout from "../components/Layout"
-import Nav from "../components/Nav";
 import FrontendBar from "../components/FrontendBar";
 
 
@@ -9,9 +8,11 @@ const About: React.FC = () => {
   return <Layout 
   center={
     <> 
-      <Nav></Nav>
       <h1>About</h1>
-      <div style={{boxShadow:"1px 1px 5px 1px lightgrey", padding:".5em"}}>
+      <p>Basic information about this webpage</p>
+      <hr></hr>
+      <h2>Imprint</h2>
+      <div style={{boxShadow:"1px 1px 3px 1px grey", padding:"1em", border:"2px solid darkblue"}}>
         <h2>Aims and Content</h2>
         <p>The page tries to provide orientation, material and tools for frontend-technology relevant for DH research especially for the development of digital editions.</p>
         <h2>How to?</h2>
